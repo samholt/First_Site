@@ -1,13 +1,136 @@
 <!-- Default file - need an index.html - home page of the first site
 
  -->
+ <!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Google Maps Multiple Markers</title> 
+  <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #map {
+    height: 100%;
+  }
+</style>
+
+  <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
+</head> 
+<body>
+  <div id="map"></div>
+
+  <script type="text/javascript">
+    var locations = [
+      ['Nice 3-bed', 51.7511272, -1.265496100000064, 2],
+      ['Good 2-bed', 51.7569743, -1.267580100000032, 1],
+      ['Posh 3-bed', 51.76138109999999, -1.265011100000038, 3],
+      ['Nice 2-bed', 51.7458268, -1.2593243999999686, 4],
+      ['Good 2-bed', 51.7557292, -1.2617999000000282, 5],
+      ['Well Furnished 2-bed & Nice 2-bed & Nicer 2-bed & Nicer 2-bed (Copy) & Nicer-er 2 bed (Same complex)', 51.7576633, -1.2726897000000008, 6],
+      ['Far away Lovely 2 bed', 51.7524133, -1.23724279999999, 7],
+      ['Mystery 2 bed flat', 51.7691949, -1.2694235000000162, 8],
+      ['Modern flat', 51.7621249, -1.2698049000000537, 9],
+      ['Unfurnished flat', 51.75797969999999, -1.2676019000000451, 10],
+      ['Furnished Central Flat', 51.76138109999999, -1.265011100000038, 11],
+      ['Furnished house', 51.7653322, -1.271770100000026, 12],
+      ['Modern Central flat', 51.7646445, -1.265808600000014, 13],
+      ['Cowley simple 2 bed', 51.735533641609564, -1.245574951171875, 14],
+      ['South Modern Flat', 51.7454718, -1.2606829000000062, 15],
+      ['Central South House', 51.74784, -1.2622248999999783, 16],
+      ['Very modern, Central Flat', 51.7621249, -1.2698049000000537, 17],
+      ['Small North Flat', 51.7646445, -1.265808600000014, 18],
+      ['Nice Central East Flat', 51.75094419999999, -1.2673045999999886, 19]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: new google.maps.LatLng(51.7569743, -1.267580100000032),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+</body>
+</html>
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGBOPsS-B1rCfznOJn7xZyhp6a4HWFT1s&signed_in=true&callback=initMap"></script>
+  </body>
+</html>
+!-->
+ 
+ <!--
 <h1>hello</h1>
 <p>Exercise</p>
 <!-- Homework link: http://oxford.code61.org/c1s1/#!8_homework 
 
 w3c
 
-stackoverflow-->
+stackoverflow
 
 <!DOCTYPE html>
 <html>
@@ -74,3 +197,5 @@ Server-side technologies run on the server. There are many more possibilities he
 <p>
 Here's a picture of a server: ...</p>
 <img style="max-height:300px" src="http://4.bp.blogspot.com/-HC2Z0-z1xX8/T0DoGxfqoUI/AAAAAAAAAXM/67dXAbEckj0/s1600/server10trays_640.jpg"/>
+
+!-->
